@@ -14,7 +14,8 @@ function buildMetadata(sample) {
 
     // Use `.html("") to clear any existing metadata
     panel.html("");
-
+    //check sample data is succesfully loaded
+    //console.log(Object.entries(result))
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
@@ -93,7 +94,7 @@ function buildCharts(sample) {
 // Function to run on page load
 function init() {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
-
+    console.log(data)
     // Get the names field
     let sampleNames = data.names;
 
@@ -105,6 +106,7 @@ function init() {
     // option for each sample name.
     sampleNames.forEach((sample) => {
       selector
+        //use selector to add new "option" to html element, .text to insert id value for user view and .property to tag the new option and text in html
         .append("option")
         .text(sample)
         .property("value", sample);
@@ -121,6 +123,7 @@ function init() {
 }
 
 // Function for event listener
+//pull (this.value) from optionsChanged in html file, registers the new selection by user
 function optionChanged(newSample) {
   // Build charts and metadata panel each time a new sample is selected
   buildCharts(newSample);
